@@ -37,7 +37,7 @@ public class Lexer {
 
             // Azonosító / cellahivatkozás / függvénynév
             if(Character.isLetter(c)){
-                 result.add(readIdent());
+                result.add(readIdent());
                 continue;
             }
 

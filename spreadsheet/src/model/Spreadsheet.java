@@ -16,7 +16,7 @@ public class Spreadsheet {
     }
 
     public Cell getCell(int row, int column){
-        if(row < rowCount && column < columnCount){
+        if(row < rowCount && row >= 0 && column >= 0 && column < grid.get(row).size()){
             return grid.get(row).get(column);
         } else {
             return null;

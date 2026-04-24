@@ -38,7 +38,12 @@ public class Evaluator {
             Object leftVal = evaluate(binOp.getLeft());
             Object rightVal = evaluate(binOp.getRight());
 
-            if(leftVal instanceof Number && rightVal instanceof Number){
+            // Ha + és bármelyik String → konkatenáció
+            if(binOp.getOp() == '+' && (leftVal instanceof String || rightVal instanceof String)){
+                String l = leftVal == null ? "" : leftVal.toString();
+                String r = rightVal == null ? "" : rightVal.toString();
+                result = l + r;
+            } else if(leftVal instanceof Number && rightVal instanceof Number){
                 double leftNum = ((Number) leftVal).doubleValue();
                 double rightNum = ((Number) rightVal).doubleValue();
 
@@ -53,10 +58,13 @@ public class Evaluator {
                         result = leftNum * rightNum;
                         break;
                     case '/':
+                        if (rightNum == 0) throw new RuntimeException("#DIV/0");
                         result = leftNum / rightNum;
                         break;
                     default: throw new RuntimeException("Érvénytelen operandusok: " + binOp.getOp());
                 }
+            } else {
+                throw new RuntimeException("#ERROR: érvénytelen operandusok a '" + binOp.getOp() + "' művelethez");
             }
         }
 
@@ -70,7 +78,7 @@ public class Evaluator {
         }
 
         if(node instanceof FuncCallNode){
-             result = evaluateFunc((FuncCallNode) node);
+            result = evaluateFunc((FuncCallNode) node);
         }
 
         return result;
