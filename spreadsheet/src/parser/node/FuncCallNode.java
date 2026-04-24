@@ -5,7 +5,7 @@ import java.util.List;
 public class FuncCallNode extends Node {
 
     public String name;
-    List<Node> arguments;
+    public List<Node> arguments;
 
     public FuncCallNode(String name, List<Node> arguments) {
         this.name = name;

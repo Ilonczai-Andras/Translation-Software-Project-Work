@@ -1,3 +1,4 @@
+import evaluator.Evaluator;
 import model.Cell;
 import model.Spreadsheet;
 import io.CsvParser;
@@ -13,25 +14,18 @@ public class Main {
         String delimiter = ";";
         Spreadsheet spreadsheet = CsvParser.parse(filePath, delimiter);
 
+        Evaluator evaluator = new Evaluator(spreadsheet);
+
         for (int i = 0; i < spreadsheet.getRowCount(); i++) {
             for (int j = 0; j < spreadsheet.getColumnCount(); j++) {
+                // ref felépítése: A1, B1, C1, A2...
+                String ref = (char)('A' + j) + String.valueOf(i + 1);
                 Cell cell = spreadsheet.getCell(i, j);
                 if (cell != null) {
-                    String raw = cell.getRawInput();
-
-                    if (cell.isExpression()) {
-                        String expr = raw.substring(1);
-                        Lexer lexer = new Lexer(expr);
-                        List<Token> tokens = lexer.tokenize();
-                        Parser parser = new Parser(tokens);
-                        Node ast = parser.parse();
-                        System.out.println(raw + " -> AST: " + ast);
-                    } else {
-                        System.out.println(raw);
-                    }
+                    Object result = evaluator.evaluateCell(ref);
+                    System.out.println(ref + " = " + result);
                 }
             }
-            System.out.println();
         }
     }
 }
