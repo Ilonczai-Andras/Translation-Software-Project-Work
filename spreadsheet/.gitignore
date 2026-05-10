@@ -26,5 +26,16 @@ bin/
 ### VS Code ###
 .vscode/
 
+### IntelliJ IDEA ###
+.idea/
+
+### ANTLR ###
+*.interp
+*.tokens
+**/*Lexer.java
+**/*Parser.java
+**/*Listener.java
+**/*BaseListener.java
+
 ### Mac OS ###
 .DS_Store

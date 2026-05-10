@@ -1,0 +1,20 @@
+# IDE artifacts
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Build output
+out/
+
+# OS files
+.DS_Store
+
+# ANTLR-generated artifacts
+*.interp
+*.tokens
+**/*Lexer.java
+**/*Parser.java
+**/*Listener.java
+**/*BaseListener.java
