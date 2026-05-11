@@ -1,11 +1,8 @@
-package spreadsheet;
+package utils;
 
 import java.io.*;
 import java.util.Map;
 
-/**
- * HTMLExporter - Az értékelt cellákat HTML táblázatba exportálja.
- */
 public class HTMLExporter {
     
     public static void export(String[][] grid, Map<String, Object> evaluatedCells, 
@@ -27,9 +24,9 @@ public class HTMLExporter {
         html.append("<body>\n");
         html.append("<table>\n");
         
-        // Fejléc sor (oszlopok)
+        // Fejléc sor
         html.append("<tr>\n");
-        html.append("<th></th>"); // Sarkos cella
+        html.append("<th></th>");
         for (int col = 0; col < grid[0].length; col++) {
             html.append("<th>").append(colToRef(col)).append("</th>\n");
         }
@@ -38,7 +35,7 @@ public class HTMLExporter {
         // Sorok
         for (int row = 0; row < grid.length; row++) {
             html.append("<tr>\n");
-            html.append("<th>").append(row + 1).append("</th>\n"); // Sor fejléc
+            html.append("<th>").append(row + 1).append("</th>\n");
             
             for (int col = 0; col < grid[row].length; col++) {
                 String cellRef = colToRef(col) + (row + 1);

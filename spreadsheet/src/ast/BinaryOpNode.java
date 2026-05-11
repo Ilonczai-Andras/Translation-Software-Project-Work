@@ -10,4 +10,9 @@ public class BinaryOpNode implements Node {
         this.left = left;
         this.right = right;
     }
+
+    @Override
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

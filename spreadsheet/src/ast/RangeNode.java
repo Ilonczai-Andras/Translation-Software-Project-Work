@@ -8,4 +8,9 @@ public class RangeNode implements Node {
         this.start = start;
         this.end = end;
     }
+
+    @Override
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -10,4 +10,9 @@ public class FuncCallNode implements Node {
         this.funcName = funcName;
         this.args = args;
     }
+
+    @Override
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

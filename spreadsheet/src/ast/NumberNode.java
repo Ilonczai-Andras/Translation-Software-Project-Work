@@ -6,4 +6,9 @@ public class NumberNode implements Node {
     public NumberNode(double value) {
         this.value = value;
     }
+
+    @Override
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }
